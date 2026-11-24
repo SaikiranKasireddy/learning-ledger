@@ -1,0 +1,21 @@
+import { NextResponse } from "next/server";
+
+export function unauthorized() {
+  return NextResponse.json({ error: "Not signed in." }, { status: 401 });
+}
+
+export function badRequest(message: string) {
+  return NextResponse.json({ error: message }, { status: 400 });
+}
+
+export function notFound() {
+  return NextResponse.json({ error: "Not found." }, { status: 404 });
+}
+
+export function serverError(e: unknown) {
+  console.error(e);
+  return NextResponse.json(
+    { error: "Could not reach the database. Check DATABASE_URL in your environment settings." },
+    { status: 500 }
+  );
+}
